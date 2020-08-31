@@ -5,3 +5,13 @@
 /.vscode/
 **/.DS_STORE
 .DS_Store
+
+## Make sure we don't upload any custom modules!
+/modules/*
+!/modules/Core
+!/modules/Forum
+/custom/panel_templates/*
+/custom/templates/*
+!/custom/panel_templates/Default
+!/custom/templates/Default
+!/custom/templates/DefaultRevamp
