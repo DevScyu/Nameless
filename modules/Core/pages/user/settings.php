@@ -44,7 +44,7 @@ if(isset($_GET['do'])){
 			// Generate secret
 			$secret = $tfa->createSecret();
 
-			$queries->update('users', $user->data()->id, array(
+			$user->update(array(
 				'tfa_secret' => $secret
 			));
 
@@ -63,9 +63,13 @@ if(isset($_GET['do'])){
 				'LINK' => URL::build('/user/settings/', 'do=enable_tfa&amp;s=2'),
 				'CANCEL' => $language->get('general', 'cancel'),
 				'CANCEL_LINK' => URL::build('/user/settings/', 'do=disable_tfa'),
-				'ERROR_TITLE' => $language->get('general', 'error'),
-				'ERRORS' => $errors
+				'ERROR_TITLE' => $language->get('general', 'error')
 			));
+			
+			if (isset($errors) && count($errors))
+				$smarty->assign(array(
+					'ERRORS' => $errors
+				));
 
 			// Load modules + template
 			Module::loadPage($user, $pages, $cache, $smarty, array($navigation, $cc_nav, $mod_nav), $widgets, $template);
@@ -89,7 +93,7 @@ if(isset($_GET['do'])){
 				if(Token::check(Input::get('token'))){
 					if(isset($_POST['tfa_code'])){
 						if($tfa->verifyCode($user->data()->tfa_secret, $_POST['tfa_code']) === true){
-							$queries->update('users', $user->data()->id, array(
+							$user->update(array(
 								'tfa_complete' => 1,
 								'tfa_enabled' => 1,
 								'tfa_type' => 1
@@ -117,7 +121,8 @@ if(isset($_GET['do'])){
 				'SUBMIT' => $language->get('general', 'submit'),
 				'TOKEN' => Token::get(),
 				'CANCEL' => $language->get('general', 'cancel'),
-				'CANCEL_LINK' => URL::build('/user/settings/', 'do=disable_tfa')
+				'CANCEL_LINK' => URL::build('/user/settings/', 'do=disable_tfa'),
+				'ERROR_TITLE' => $language->get('general', 'error')
 			));
 
 			// Load modules + template
@@ -140,7 +145,7 @@ if(isset($_GET['do'])){
 
 	} else if($_GET['do'] == 'disable_tfa') {
 		// Disable TFA
-		$queries->update('users', $user->data()->id, array(
+		$user->update(array(
 			'tfa_enabled' => 0,
 			'tfa_type' => 0,
 			'tfa_secret' => null,
@@ -267,7 +272,7 @@ if(isset($_GET['do'])){
                             } else
                                 $privateProfile = $user->data()->private_profile;
 
-                            $queries->update('users', $user->data()->id, array(
+                            $user->update(array(
                                 'language_id' => $new_language,
                                 'timezone' => $timezone,
                                 'signature' => $signature,
@@ -385,7 +390,7 @@ if(isset($_GET['do'])){
 							$new_password = password_hash(Input::get('new_password'), PASSWORD_BCRYPT, array("cost" => 13));
 							
 							// Update password
-							$queries->update('users', $user->data()->id, array(
+							$user->update(array(
 								'password' => $new_password,
 								'pass_method' => 'default'
 							));
@@ -458,7 +463,7 @@ if(isset($_GET['do'])){
                         if ($user->checkCredentials($user->data()->username, $password, 'username')) {
                             try {
                                 // Update email
-                                $queries->update('users', $user->data()->id, array(
+                                $user->update(array(
                                     'email' => Output::getClean($_POST['email'])
                                 ));
 
@@ -513,7 +518,7 @@ if(isset($_GET['do'])){
 					$discord_id = Input::get('discord_id');
 					if ($discord_id == $user->data()->discord_id) {} 
 					else if ($discord_id == '') {
-						$queries->update('users', $user->data()->id, array(
+						$user->update(array(
                     		'discord_id' => null
 						));
 						Session::flash('settings_success', $language->get('user', 'discord_id_unlinked'));
@@ -555,7 +560,7 @@ if(isset($_GET['do'])){
 								}
 							}
 						} else {
-							$queries->update('users', $user->data()->id, array(
+							$user->update(array(
 								'discord_id' => 010
 							));
 							Session::flash('settings_success', $language->get('user', 'discord_id_confirm'));
@@ -625,6 +630,7 @@ if(isset($_GET['do'])){
 	}
 
 	// Error/success message?
+	if(Session::exists('settings_error')) $error = Session::flash('settings_error');
 	if(Session::exists('settings_success')) $success = Session::flash('settings_success');
 	
 	// Get languages
@@ -752,10 +758,7 @@ if(isset($_GET['do'])){
 	if($user->canPrivateProfile($user->data()->id)){
         $smarty->assign(array(
             'PRIVATE_PROFILE' => $language->get('user', 'private_profile'),
-            'PRIVATE_PROFILE_ENABLED' => $user->isPrivateProfile($user->data()->id),
-            'ENABLED' => $language->get('user', 'enabled'),
-            'DISABLED' => $language->get('user', 'disabled')
-
+            'PRIVATE_PROFILE_ENABLED' => $user->isPrivateProfile($user->data()->id)
         ));
 	}
 	
@@ -794,7 +797,9 @@ if(isset($_GET['do'])){
 		'ERROR_TITLE' => $language->get('general', 'error'),
 		'HELP' => $language->get('general', 'help'),
 		'INFO' => $language->get('general', 'info'),
-		'ID_INFO' => $language->get('user', 'discord_id_help')
+		'ID_INFO' => $language->get('user', 'discord_id_help'),
+		'ENABLED' => $language->get('user', 'enabled'),
+		'DISABLED' => $language->get('user', 'disabled')
 	));
 
 	if ($discord_linked) {
