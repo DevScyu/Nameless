@@ -2,7 +2,7 @@
 /*
  *	Made by Samerton
  *  https://github.com/NamelessMC/Nameless/
- *  NamelessMC version 2.0.0-pr2
+ *  NamelessMC version 2.0.0-pr8
  *
  *  License: MIT
  *
@@ -25,12 +25,16 @@ require(ROOT_PATH . '/core/includes/bulletproof/bulletproof.php');
 if(!$user->isLoggedIn())
     die();
 
-$image_extensions = array('jpg', 'png', 'gif', 'jpeg');
+$image_extensions = array('jpg', 'png', 'jpeg');
+
+if ($user->hasPermission('usercp.gif_avatar')) {
+	$image_extensions[] = 'gif';
+}
 
 // Deal with input
 if(Input::exists()){
 	// Check token
-	if(Token::check(Input::get('token'))){
+	if(Token::check()){
 		// Token valid
 		$image = new Bulletproof\Image($_FILES);
 		$image->setSize(1, 2097152); // between 1b and 2mb

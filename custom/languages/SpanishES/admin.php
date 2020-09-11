@@ -163,7 +163,13 @@ $language = array(
     'login_method' => 'Método de logueo',
     'privacy_and_terms' => 'Términos de Uso',
 	'dropdown_name' => 'Dropdown Name',
-
+	'editing_messages' => 'Editing Messages',
+	'emails_mass_message' => 'Email Mass Message',
+	'sending_mass_message' => 'Sending Mass Message',
+	'emails_mass_message_sent_successfully' => 'Successfully sent a mass email message.',
+	'emails_mass_message_replacements' => 'You can use variables in your email message. Supported variables: {username}, {sitename}',
+	'emails_mass_message_loading' => 'Loading... Please do not reload the page. This may take a while.',
+	
 	// Reacciones
 	'icon' => 'Icono',
 	'type' => 'Tipo',
@@ -327,6 +333,7 @@ $language = array(
 	// Diseno
 	'templates' => 'Plantillas',
 	'panel_templates' => 'Plantillas del Panel',
+	'view_all_panel_templates' => 'View all panel templates',
 	'template_outdated' => 'Hey hemos detecto que esta plantilla es para NamelessMC {x} y usted tiene la version {y}', // Don't replace "{x}" or "{y}"
 	'active' => 'Activo',
 	'deactivate' => 'Desactivar',
@@ -370,6 +377,7 @@ $language = array(
 	'background_reset_successfully' => 'Fondo reiniciado correctamente.',
 	'background_updated_successfully' => 'Fondo actualizado correctamente.',
 	'unable_to_enable_template' => 'Imposible activar plantillas incompatibles.',
+	'background_image_info' => 'Please note that this option may not be compatible with most templates.',
 
 	// Usuario y grupos
 	'users' => 'Usuarios',
@@ -650,6 +658,7 @@ $language = array(
 	// Announcements
 	'announcements' => 'Anuncios',
 	'new_announcement' => 'Nuevo anuncio',
+	'announcement_info' => 'Create announcements to display a message to specific groups on specific pages of your website.',
 	'creating_announcement' => 'Cuando un anuncio',
 	'editing_announcement' => 'Editando un anuncio',
 	'creating_announcement_success' => 'Anuncio creado correctamente.',
@@ -687,4 +696,6 @@ $language = array(
 	'discord_bot_url_valid' => 'La URL de su bot es válida.',
 	'discord_bot_url_backup' => 'La URL de su bot es válida. (Backup)',
 	'discord_bot_url_backup_info' => 'Una URL que apunta a una copia de seguridad/segunda instancia del bot NamelessMC en caso de que falle la primera opción. ¡Cambie este valor solo si sabe lo que está haciendo!',
+	'discord_cannot_interact' => 'The Nameless Link bot cannot interact with this user in Discord. Is their role higher than the Nameless Link role?'
+
 );

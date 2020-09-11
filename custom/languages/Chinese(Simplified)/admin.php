@@ -165,7 +165,13 @@ $language = array(
     'login_method' => '登录方式',
 	'privacy_and_terms' => '隐私 & 条款',
 	'dropdown_name' => 'Dropdown Name',
-
+	'editing_messages' => 'Editing Messages',
+	'emails_mass_message' => 'Email Mass Message',
+	'sending_mass_message' => 'Sending Mass Message',
+	'emails_mass_message_sent_successfully' => 'Successfully sent a mass email message.',
+	'emails_mass_message_replacements' => 'You can use variables in your email message. Supported variables: {username}, {sitename}',
+	'emails_mass_message_loading' => 'Loading... Please do not reload the page. This may take a while.',
+	
 	// Reactions
 	'icon' => '图标',
 	'type' => '种类',
@@ -329,6 +335,7 @@ $language = array(
 	// Styles
 	'templates' => '模板',
 	'panel_templates' => '面板模板',
+	'view_all_panel_templates' => 'View all panel templates',
 	'template_outdated' => '我们检测到您的模板适用于 Nameless 版本 {x}, 但你正在运行 Nameless 版本 {y}', // Don't replace "{x}" or "{y}"
 	'active' => '应用中的',
 	'deactivate' => '停用',
@@ -372,6 +379,8 @@ $language = array(
 	'background_reset_successfully' => '背景重置成功。',
 	'background_updated_successfully' => '背景更新成功。',
 	'unable_to_enable_template' => '无法启用不兼容的模板。',
+	'background_image_info' => 'Please note that this option may not be compatible with most templates.',
+
 	// Users & groups
 	'users' => '账号',
 	'groups' => '权限组',
@@ -653,6 +662,7 @@ $language = array(
 	// Announcements
 	'announcements' => '公告',
 	'new_announcement' => '新公告',
+	'announcement_info' => 'Create announcements to display a message to specific groups on specific pages of your website.',
 	'creating_announcement' => '创建公告',
 	'editing_announcement' => '编辑公告',
 	'creating_announcement_success' => '创建公告成功。',
@@ -690,4 +700,6 @@ $language = array(
 	'discord_bot_url_valid' => '您的机器人 URL 有效。',
 	'discord_bot_url_backup' => 'Discord Bot 链接 (备案)',
 	'discord_bot_url_backup_info' => '当指向第一个链接(URL)的备案失效时，所使用的第二个备案链接(URL),仅当您知道你在做什么时，再更改此值!',
+	'discord_cannot_interact' => 'The Nameless Link bot cannot interact with this user in Discord. Is their role higher than the Nameless Link role?'
+
 );

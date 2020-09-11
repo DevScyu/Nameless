@@ -128,7 +128,7 @@ if(isset($_GET['action'])){
 if(Input::exists()){
 	$errors = array();
 
-	if(Token::check(Input::get('token'))){
+	if(Token::check()){
 		if(Input::get('action') === 'update'){
 			// Update a user's settings
 			$signature = Input::get('signature');
@@ -230,6 +230,9 @@ if(Input::exists()){
 											$errors[] = $language->get('user', 'discord_communication_error');
 										} else {
 											switch ($result) {
+												case 'failure-cannot-interact':
+													$errors[] = $language->get('admin', 'discord_cannot_interact');
+													break;
 												case 'failure-invalid-api-url':
 													$errors[] = $language->get('admin', 'discord_invalid_api_url');
 													break;

@@ -163,7 +163,13 @@ $language = array(
 	'login_method' => 'Metoda přihlášení',
 	'privacy_and_terms' => 'Soukromí a podmínky',
 	'dropdown_name' => 'Dropdown Name',
-
+	'editing_messages' => 'Editing Messages',
+	'emails_mass_message' => 'Email Mass Message',
+	'sending_mass_message' => 'Sending Mass Message',
+	'emails_mass_message_sent_successfully' => 'Successfully sent a mass email message.',
+	'emails_mass_message_replacements' => 'You can use variables in your email message. Supported variables: {username}, {sitename}',
+	'emails_mass_message_loading' => 'Loading... Please do not reload the page. This may take a while.',
+	
 	// Reactions
 	'icon' => 'Ikona',
 	'type' => 'Typ',
@@ -328,6 +334,7 @@ $language = array(
 	// Styles
 	'templates' => 'Šablony',
 	'panel_templates' => 'Šablony panelů',
+	'view_all_panel_templates' => 'View all panel templates',
 	'template_outdated' => 'Zjistili jsme, že šablona je určena pro NamelessMC verzi {x} , ale vy používáte verzi {y}', // Don't replace "{x}" or "{y}"
 	'active' => 'Povolená',
 	'deactivate' => 'Zakázat',
@@ -371,6 +378,7 @@ $language = array(
 	'background_reset_successfully' => 'Pozadí bylo úspěšně obnoveno.',
 	'background_updated_successfully' => 'Pozadí bylo úspěšně aktualizováno.',
 	'unable_to_enable_template' => 'Nelze povolit nekompatibilní šablonu.',
+	'background_image_info' => 'Please note that this option may not be compatible with most templates.',
 
 	// Users & groups
 	'users' => 'Uživatel',
@@ -652,6 +660,7 @@ $language = array(
 	// Announcements
 	'announcements' => 'Oznámení',
 	'new_announcement' => 'Nové oznámení',
+	'announcement_info' => 'Create announcements to display a message to specific groups on specific pages of your website.',
 	'creating_announcement' => 'Vytváření oznámení',
 	'editing_announcement' => 'Úprava oznámení',
 	'creating_announcement_success' => 'Oznámení úspěšně vytvořeno.',
@@ -689,4 +698,6 @@ $language = array(
 	'discord_bot_url_valid' => 'URL vašeho bota je platná.',
 	'discord_bot_url_backup' => 'URL Discord bota (záloha)',
 	'discord_bot_url_backup_info' => 'URL která odkazuje na záložní / druhou relaci Nameless Link bota v případě selhání první možnosti. Toto neměňte, pokud nevíte, co děláte!',
+	'discord_cannot_interact' => 'The Nameless Link bot cannot interact with this user in Discord. Is their role higher than the Nameless Link role?'
+
 );

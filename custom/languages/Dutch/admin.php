@@ -165,7 +165,13 @@ $language = array(
     'login_method' => 'Login Methode',
 	'privacy_and_terms' => 'Privacy & Voorwaarden',
 	'dropdown_name' => 'Dropdown Name',
-
+	'editing_messages' => 'Editing Messages',
+	'emails_mass_message' => 'Email Mass Message',
+	'sending_mass_message' => 'Sending Mass Message',
+	'emails_mass_message_sent_successfully' => 'Successfully sent a mass email message.',
+	'emails_mass_message_replacements' => 'You can use variables in your email message. Supported variables: {username}, {sitename}',
+	'emails_mass_message_loading' => 'Loading... Please do not reload the page. This may take a while.',
+	
 	// Reacties
 	'icon' => 'Icoon',
 	'type' => 'Type',
@@ -330,6 +336,7 @@ $language = array(
 	// Stijlen
 	'templates' => 'Sjablonen',
 	'panel_templates' => 'Paneel Sjablonen',
+	'view_all_panel_templates' => 'View all panel templates',
 	'template_outdated' => 'We hebben ontdekt dat dit sjabloon voor versie {x} is, maar je gebruikt versie {y}', // Verander "{x}" of "{y}" niet
 	'active' => 'Actief',
 	'deactivate' => 'Deactiveer',
@@ -373,6 +380,7 @@ $language = array(
 	'background_reset_successfully' => 'Achtergrond verwijderd.',
 	'background_updated_successfully' => 'Achtergrond met succes bijgewerkt.',
 	'unable_to_enable_template' => 'Niet in staat om incompatibele sjablonen in te schakelen.',
+	'background_image_info' => 'Please note that this option may not be compatible with most templates.',
 
 	// Gebruikers & groepen
 	'users' => 'Gebruikers',
@@ -653,6 +661,7 @@ $language = array(
 	// Announcements
 	'announcements' => 'Aankondigingen',
 	'new_announcement' => 'Nieuwe aankondiging',
+	'announcement_info' => 'Create announcements to display a message to specific groups on specific pages of your website.',
 	'creating_announcement' => 'Aankondiging Maken',
 	'editing_announcement' => 'Aankondiging Bewerken',
 	'creating_announcement_success' => 'Aankondiging gemaakt.',
@@ -690,4 +699,6 @@ $language = array(
 	'discord_bot_url_valid' => 'Your Bot URL is valid.',
 	'discord_bot_url_backup' => 'Discord Bot URL (Backup)',
 	'discord_bot_url_backup_info' => 'A URL which points to a backup/second instance of the NamelessMC bot incase the first option fails. Only change this value if you know what you are doing!',
+	'discord_cannot_interact' => 'The Nameless Link bot cannot interact with this user in Discord. Is their role higher than the Nameless Link role?'
+
 );

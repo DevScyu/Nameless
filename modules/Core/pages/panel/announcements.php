@@ -50,11 +50,17 @@ if (!isset($_GET['action'])) {
         );
     }
 
+    if (count($announcements) >= 1) {
+        $smarty->assign(array(
+            'ALL_ANNOUNCEMENTS' => $announcements
+        ));
+    }
+
     $smarty->assign(array(
+        'ANNOUCEMENTS_INFO' => $language->get('admin', 'announcement_info'),
         'NEW_LINK' => URL::build('/panel/core/announcements', 'action=new'),
         'NEW' => $language->get('admin', 'new_announcement'),
         'ACTIONS' => $language->get('general', 'actions'),
-        'ALL_ANNOUNCEMENTS' => $announcements,
         'EDIT_LINK' => URL::build('/panel/core/announcements', 'action=edit&id='),
         'DELETE_LINK' => URL::build('/panel/core/announcements', 'action=delete&id={x}')
     ));
@@ -66,7 +72,7 @@ if (!isset($_GET['action'])) {
             // Create new hook
             if (Input::exists()) {
                 $errors = array();
-                if (Token::check(Input::get('token'))) {
+                if (Token::check()) {
                     // Validate input
                     $validate = new Validate();
                     $validation = $validate->check($_POST, array(
@@ -170,7 +176,7 @@ if (!isset($_GET['action'])) {
 
             if (Input::exists()) {
                 $errors = array();
-                if (Token::check(Input::get('token'))) {
+                if (Token::check()) {
                     // Validate input
                     $validate = new Validate();
                     $validation = $validate->check($_POST, array(

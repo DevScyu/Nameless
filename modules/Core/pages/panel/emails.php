@@ -6,7 +6,7 @@
  *
  *  License: MIT
  *
- *  Panel API page
+ *  Email management page
  */
 
 // Can the user view the panel?
@@ -141,6 +141,7 @@ if(isset($_GET['action'])){
 			'BACK' => $language->get('general', 'back'),
 			'BACK_LINK' => URL::build('/panel/core/emails'),
 			'EMAILS_MESSAGES' => $language->get('admin', 'edit_email_messages'),
+			'EDITING_MESSAGES' => $language->get('admin', 'editing_messages'),
 			'OPTIONS' => $language->get('admin', 'email_message_options'),
 			'SELECT_LANGUAGE' => $language->get('admin', 'editing_language'),
 			'EDITING_LANGUAGE' => $editing_language->getActiveLanguage(),
@@ -179,7 +180,7 @@ if(isset($_GET['action'])){
 	if(Input::exists()){
 		$errors = array();
 
-		if(Token::check(Input::get('token'))){
+		if(Token::check()){
 
 			// Handle email message updating
 			if(isset($_POST['greeting'])) {
@@ -294,7 +295,16 @@ if(isset($_GET['action'])){
 
 	require(ROOT_PATH . '/core/email.php');
 
+	if ($user->hasPermission('admincp.core.emails_mass_message')){
+		$smarty->assign(array(
+			'MASS_MESSAGE' => $language->get('admin', 'emails_mass_message'),
+			'MASS_MESSAGE_LINK' => URL::build('/panel/core/emails/mass_message'),
+		));
+	}
+
 	$smarty->assign(array(
+		'MASS_MESSAGE' => $language->get('admin', 'emails_mass_message'),
+		'MASS_MESSAGE_LINK' => URL::build('/panel/core/emails/mass_message'),
 		'EDIT_EMAIL_MESSAGES' => $language->get('admin', 'edit_email_messages'),
 		'EDIT_EMAIL_MESSAGES_LINK' => URL::build('/panel/core/emails/', 'action=edit_messages'),
 		'SEND_TEST_EMAIL' => $language->get('admin', 'send_test_email'),

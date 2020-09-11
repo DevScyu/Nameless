@@ -18,8 +18,8 @@ class Core_Module extends Module {
 
 		$name = 'Core';
 		$author = '<a href="https://samerton.me" target="_blank" rel="nofollow noopener">Samerton</a>';
-		$module_version = '2.0.0-pr7';
-		$nameless_version = '2.0.0-pr7';
+		$module_version = '2.0.0-pr8';
+		$nameless_version = '2.0.0-pr8';
 
 		parent::__construct($this, $name, $author, $module_version, $nameless_version);
 
@@ -64,6 +64,7 @@ class Core_Module extends Module {
 		$pages->add('Core', '/panel/core/errors', 'pages/panel/errors.php');
 		$pages->add('Core', '/panel/core/emails', 'pages/panel/emails.php');
 		$pages->add('Core', '/panel/core/emails/errors', 'pages/panel/emails_errors.php');
+		$pages->add('Core', '/panel/core/emails/mass_message', 'pages/panel/emails_mass_message.php');
 		$pages->add('Core', '/panel/core/navigation', 'pages/panel/navigation.php');
 		$pages->add('Core', '/panel/core/privacy_and_terms', 'pages/panel/privacy_and_terms.php');
 		$pages->add('Core', '/panel/core/reactions', 'pages/panel/reactions.php');
@@ -240,26 +241,28 @@ class Core_Module extends Module {
 			$hook_array = $cache->retrieve('hooks');
 		} else {
 			$hook_array = array();
-			$hooks = $queries->getWhere('hooks', array('id', '<>', 0));
-			if(count($hooks)) {
-				foreach($hooks as $hook) {
-					switch($hook->action) {
-						case 2:
-							$action = 'DiscordHook::execute';
-						break;
-						default:
-							continue;
-						break;
+			if ($queries->tableExists('hooks')) {
+				$hooks = $queries->getWhere('hooks', array('id', '<>', 0));
+				if (count($hooks)) {
+					foreach ($hooks as $hook) {
+						switch ($hook->action) {
+							case 2:
+								$action = 'DiscordHook::execute';
+								break;
+							default:
+								continue;
+								break;
+						}
+
+						$hook_array[] = array(
+							'id' => $hook->id,
+							'url' => Output::getClean($hook->url),
+							'action' => $action,
+							'events' => json_decode($hook->events, true)
+						);
 					}
-					
-					$hook_array[] = array(
-						'id' => $hook->id,
-						'url' => Output::getClean($hook->url),
-						'action' => $action,
-						'events' => json_decode($hook->events, true)
-					);
+					$cache->store('hooks', $hook_array);
 				}
-				$cache->store('hooks', $hook_array);
 			}
 		}
 		HookHandler::registerHooks($hook_array);
@@ -295,6 +298,7 @@ class Core_Module extends Module {
 			'admincp.core.debugging' => $language->get('admin', 'core') . ' &raquo; ' . $language->get('admin', 'debugging_and_maintenance'),
 			'admincp.errors' => $language->get('admin', 'core') . ' &raquo; ' . $language->get('admin', 'debugging_and_maintenance') . ' &raquo; ' . $language->get('admin', 'error_logs'),
 			'admincp.core.emails' => $language->get('admin', 'core') . ' &raquo; ' . $language->get('admin', 'emails'),
+			'admincp.core.emails_mass_message' => $language->get('admin', 'core') . ' &raquo; ' . $language->get('admin', 'emails_mass_message'),
 			'admincp.core.navigation' => $language->get('admin', 'core') . ' &raquo; ' . $language->get('admin', 'navigation'),
 			'admincp.core.reactions' => $language->get('admin', 'core') . ' &raquo; ' . $language->get('user', 'reactions'),
 			'admincp.core.registration' => $language->get('admin', 'core') . ' &raquo; ' . $language->get('admin', 'registration'),
@@ -316,6 +320,8 @@ class Core_Module extends Module {
 			'admincp.security' => $language->get('admin', 'security'),
 			'admincp.security.acp_logins' => $language->get('admin', 'security') . ' &raquo; ' . $language->get('admin', 'acp_logins'),
 			'admincp.security.template' => $language->get('admin', 'security') . ' &raquo; ' . $language->get('admin', 'template_changes'),
+			'admincp.security.emails' => $language->get('admin', 'security') . ' &raquo; ' . $language->get('admin', 'email_logs'),
+			'admincp.security.discord' => $language->get('admin', 'security') . ' &raquo; ' . $language->get('admin', 'discord_logs'),
 			'admincp.security.all' => $language->get('admin', 'security') . ' &raquo; ' . $language->get('admin', 'all_logs'),
 			'admincp.sitemap' => $language->get('admin', 'sitemap'),
 			'admincp.styles' => $language->get('admin', 'styles'),
@@ -345,7 +351,8 @@ class Core_Module extends Module {
 			'usercp.signature' => $language->get('user', 'profile_settings') . ' &raquo; ' . $language->get('user', 'signature'),
 			'usercp.private_profile' => $language->get('user', 'profile_settings') . ' &raquo; ' . $language->get('user', 'private_profile'),
 			'usercp.nickname' => $language->get('user', 'profile_settings') . ' &raquo; ' . $language->get('user', 'nickname'),
-			'usercp.profile_banner' => $language->get('user', 'profile_settings') . ' &raquo; ' . $language->get('user', 'upload_profile_banner')
+			'usercp.profile_banner' => $language->get('user', 'profile_settings') . ' &raquo; ' . $language->get('user', 'upload_profile_banner'),
+			'usercp.gif_avatar' => $language->get('user', 'profile_settings') . ' &raquo; ' . $language->get('user', 'gif_avatar')
 		));
 
 		// Profile Page

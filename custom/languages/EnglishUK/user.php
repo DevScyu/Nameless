@@ -30,11 +30,10 @@ $language = array(
 	'successfully_logged_out' => 'You have been logged out successfully.',
 	'messaging' => 'Messaging',
 	'click_here_to_view' => 'Click here to view.',
-	'moderation' => 'Moderation',
-	'administration' => 'Administration',
 	'alerts' => 'Alerts',
 	'delete_all' => 'Delete All',
 	'private_profile' => 'Private profile',
+	'gif_avatar' => 'Upload .gif as custom avatar',
 	
 	// Profile settings
 	'field_is_required' => '{x} is required.', // Don't replace {x}
