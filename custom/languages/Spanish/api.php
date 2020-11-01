@@ -34,13 +34,16 @@ $language = array(
     'you_must_register_to_report' => 'Debes registrarte en nuestra web para crear un reporte.',
     'you_have_been_banned_from_website' => '!HAS SIDO BANEADO DE NUESTRA WEB!',
     'you_have_open_report_already' => 'Ya tienes un informe abierto con respecto a este jugador.',
+    'cannot_report_yourself' => 'You cannot report yourself.',
     'unable_to_create_report' => 'No se ha podido crear ese reporte...',
     'unable_to_update_username' => 'No se ha podido actualizar a ese usuario...',
     'unable_to_update_server_info' => 'No se ha podido actualizar la información del Servidor.',
     'invalid_server_id' => 'ID del Servidor no valida.',
     'invalid_code' => 'El código proporcionado es inválido.',
+    'user_already_active' => 'Your account has already been activated.',
     'discord_integration_disabled' => 'La integración de discord está deshabilitada.',
     'unable_to_set_discord_id' => 'No se puede establecer la identificación de Discord.',
+    'unable_to_set_discord_bot_url' => 'Unable to set Discord bot URL',
 
     // Success messages
     'finish_registration_link' => 'Clickea el siguiente link para confirmar el registro:',
@@ -50,6 +53,7 @@ $language = array(
     'new_private_message_from' => 'Nuevo mensaje privado de {x}', // Don't replace {x}
     'username_updated' => 'Nombre de usuario actualizado correctamente.',
     'server_info_updated' => 'Información del Servidor actualizada correctamnete.',
-	'account_validated' => 'Cuenta verificada exitosamente',
-    'discord_id_set' => 'ID de discord establecida correctamente.'
+    'account_validated' => 'Cuenta verificada exitosamente',
+    'discord_id_set' => 'ID de discord establecida correctamente.',
+    'discord_bot_url_updated' => 'Discord bot URL updated successfully'
 );

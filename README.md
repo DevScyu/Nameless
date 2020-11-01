@@ -16,16 +16,17 @@ The following list is a brief summary of the features available in v2 pre-releas
 - Pretty URL option (requires mod_rewrite)
 
 #### Customising Nameless
-Developer documentation is coming soon, both for module and template development.
+- Check out [this wiki article](https://github.com/NamelessMC/Nameless/wiki/Nameless-2.0-Module-Developer-Documentation) for the Module Developer Documenation
+- Developer documentation is coming soon for template and widget development.
 
 ## Installation
 Installing NamelessMC v2 is fairly straightforward, provided you already have a web host.
 
 #### Requirements
-- PHP 5.4+ (7.2+ recommended) with:
+- PHP 5.4+ (7.3+ recommended) with:
     - php-curl
     - php-exif (optional)
-    - php-gd
+    - php-gd with png and jpeg support
     - php-mbstring
     - php-mysql or php-mysqlnd
     - php-pdo

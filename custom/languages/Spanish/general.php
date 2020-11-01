@@ -2,7 +2,7 @@
 /*
  *	Made by TheSuperSkills (Edited by iMaykolRD_)
  *  https://github.com/NamelessMC/Nameless/
- *  NamelessMC version 2.0.0-pr8/pr4
+ *  NamelessMC version 2.0.0-pr8
  *
  *  License: MIT
  *
@@ -141,7 +141,9 @@ $language = array(
     'total_online_users' => 'Total de usuarios conectados: {x}',
     'discord_widget_disabled' => 'El widget está deshabilitado para el servidor de Discord especificado.. Vaya a la pestaña Widget en la configuración del servidor de Discord y asegúrese de que el widget de Discord esté habilitado y que la ID sea correcta..',
     'online_guests' => 'Invitados en linea',
-    'total_online' => 'Total en linea', // this is Online Users + Online Guests
+	'total_online' => 'Total en linea', // this is Online Users + Online Guests
+	'no_default_server' => 'No hemos encontrado ningun servidor por defecto, Por favor selecciona uno en StaffCP - Integraciones - Minecraft.',
+	'server_status' => 'Estado del servidor',
 
     /*
      *  Privacy policy

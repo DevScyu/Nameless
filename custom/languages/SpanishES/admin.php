@@ -80,6 +80,7 @@ $language = array(
 	'discord_widget_theme' => 'Modo del Widget de discord',
 	'discord_id_length' => 'Asegúrate de que tu ID de Discord tenga 18 caracteres.',
 	'discord_id_numeric' => 'Asegúrese de que su ID de Discord sea numérico (solo números).',
+	'discord_invite_info' => 'To invite the Nameless Link bot to your Discord server, click <a target="_blank" href="https://discord.com/api/oauth2/authorize?client_id=734609142081388705&permissions=268435456&scope=bot">here</a>.',
 	'dark' => 'Oscuro',
 	'light' => 'Claro',
 	'google_plus_url' => 'Enlace de Google Plus',
@@ -335,6 +336,7 @@ $language = array(
 	'panel_templates' => 'Plantillas del Panel',
 	'view_all_panel_templates' => 'View all panel templates',
 	'template_outdated' => 'Hey hemos detecto que esta plantilla es para NamelessMC {x} y usted tiene la version {y}', // Don't replace "{x}" or "{y}"
+	'template_not_supported' => 'As of NamelessMC 2.0.0-pr8 the Default template is not supported. For the best experience, please use a supported template.',
 	'active' => 'Activo',
 	'deactivate' => 'Desactivar',
 	'activate' => 'Activar',
@@ -498,6 +500,9 @@ $language = array(
 	'editing_widget_x' => 'Editando el widget {x}', // Don't replace {x}
 	'module_x' => 'Módulo: {x}', // Don't replace {x}
 	'widget_order' => 'Orden del Widget',
+	'widget_location' => 'Widget Location',
+	'left' => 'Left',
+	'right' => 'Right',
 
     // Online users widget
     'include_staff_in_user_widget' => '¿Incluir a los miembros del Staff en el widget de los Usuarios?',
@@ -578,6 +583,9 @@ $language = array(
 	'group_sync_rule_deleted_successfully' => 'La regla de sincronización de grupos ha sido eliminada.',
 	'existing_rules' => 'Reglas Existentes',
 	'new_rule' => 'Nueva Regla',
+	'api_endpoints' => 'API Endpoints',
+	'api_endpoints_info' => 'API Endpoints allow Modules to create ways for external applications (such as Minecraft and Discord) to interact with your NamelessMC website.',
+	'route' => 'Route',
 
 	// Archivos
 	'drag_files_here' => 'Arrastre los archivos aquí para cargarlos.',

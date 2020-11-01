@@ -84,6 +84,7 @@ $language = array(
     'discord_widget_theme' => 'Temă Widget Discord',
     'discord_id_length' => 'Please ensure your Discord ID is 18 characters long.',
     'discord_id_numeric' => 'Please ensure your Discord ID is numeric (Numbers only).',
+    'discord_invite_info' => 'To invite the Nameless Link bot to your Discord server, click <a target="_blank" href="https://discord.com/api/oauth2/authorize?client_id=734609142081388705&permissions=268435456&scope=bot">here</a>.',
     'dark' => 'Închisă',
     'light' => 'Deschisă',
     'google_plus_url' => 'Adresă Google Plus',
@@ -338,6 +339,7 @@ $language = array(
     'panel_templates' => 'Șabloane panou control',
     'view_all_panel_templates' => 'View all panel templates',
     'template_outdated' => 'Am detectat că șablonul dvs. este destinat versiunii NamelessMC {x}, dar executați versiunea NamelessMC {y}.', // Don't replace "{x}" or "{y}"
+    'template_not_supported' => 'As of NamelessMC 2.0.0-pr8 the Default template is not supported. For the best experience, please use a supported template.',
     'active' => 'Activ',
     'deactivate' => 'Dezactivare',
     'activate' => 'Activare',
@@ -499,6 +501,9 @@ $language = array(
     'editing_widget_x' => 'Modificare piesă: {x}', // Don't replace {x}
     'module_x' => 'Module: {x}', // Don't replace {x}
     'widget_order' => 'Ordinea piesei',
+    'widget_location' => 'Widget Location',
+    'left' => 'Left',
+    'right' => 'Right',
 
     // Online users widget
     'include_staff_in_user_widget' => 'Includeți membrii (staff) personalului în widget-ul utilizatorului?',
@@ -579,6 +584,9 @@ $language = array(
     'group_sync_rule_deleted_successfully' => 'Regula de sincronizare a grupului a fost ștearsă cu succes.',
     'existing_rules' => 'Reguli existente',
     'new_rule' => 'Regulă nouă',
+    'api_endpoints' => 'API Endpoints',
+    'api_endpoints_info' => 'API Endpoints allow Modules to create ways for external applications (such as Minecraft and Discord) to interact with your NamelessMC website.',
+    'route' => 'Route',
 
     // File uploads
     'drag_files_here' => 'Trageți fișierele aici pentru a le încărca.',

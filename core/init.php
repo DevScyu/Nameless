@@ -52,10 +52,8 @@ require_once ROOT_PATH . '/core/includes/smarty/Smarty.class.php'; // Smarty
 
 // Normal autoloader
 spl_autoload_register(function($class) {
-    if(strpos($class, 'TeamSpeak3') === false){
-        $path = join(DIRECTORY_SEPARATOR, array(ROOT_PATH, 'core', 'classes', $class . '.php'));
-        if(file_exists($path)) require_once($path);
-    }
+    $path = join(DIRECTORY_SEPARATOR, array(ROOT_PATH, 'core', 'classes', $class . '.php'));
+    if(file_exists($path)) require_once($path);
 });
 
 if($page != 'install'){
@@ -273,7 +271,7 @@ if($page != 'install'){
 		$template = $cache->retrieve('default');
 
 		if(!$template){
-			define('TEMPLATE', 'Default');
+			define('TEMPLATE', 'DefaultRevamp');
 		} else {
 			define('TEMPLATE', $template);
 		}
@@ -286,7 +284,7 @@ if($page != 'install'){
 			$template = $cache->retrieve('default');
 
 			if(!$template){
-				define('TEMPLATE', 'Default');
+				define('TEMPLATE', 'DefaultRevamp');
 			} else {
 				define('TEMPLATE', $template);
 			}
@@ -313,7 +311,7 @@ if($page != 'install'){
 				$template = $cache->retrieve('default');
 
 				if(!$template){
-					define('TEMPLATE', 'Default');
+					define('TEMPLATE', 'DefaultRevamp');
 				} else {
 					define('TEMPLATE', $template);
 				}
@@ -446,6 +444,9 @@ if($page != 'install'){
     // Widgets
     $widgets = new Widgets($cache);
 
+    // Endpoints
+    $endpoints = new Endpoints();
+    
     // Modules
     $cache->setCache('modulescache');
     if(!$cache->isCached('enabled_modules')){

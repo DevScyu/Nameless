@@ -32,6 +32,7 @@ $language = array(
     'unable_to_update_group' => "Impossibile aggiornare il gruppo dell'utente",
     'report_content_too_long' => 'Il contenuto del report deve essere di 255 caratteri o meno',
     'you_must_register_to_report' => 'È necessario registrarsi sul nostro sito web per poter creare un report',
+    'cannot_report_yourself' => 'You cannot report yourself.',
     'you_have_been_banned_from_website' => 'Sei stato bannato dal sito',
     'you_have_open_report_already' => 'Hai già un report aperto su questo giocatore',
     'unable_to_create_report' => 'Impossibile creare il report',
@@ -39,8 +40,10 @@ $language = array(
     'unable_to_update_server_info' => 'Impossibile aggiornare le info del server',
     'invalid_server_id' => 'Server ID invalido',
     'invalid_code' => 'Il codice fornito è invalido',
+    'user_already_active' => 'Your account has already been activated.',
     'discord_integration_disabled' => 'Discord integration is disabled.',
     'unable_to_set_discord_id' => 'Unable to set Discord ID.',
+    'unable_to_set_discord_bot_url' => 'Unable to set Discord bot URL',
 
     // Success messages
     'finish_registration_link' => 'Per favore, clicca sul seguente link per completare la registrazione:',
@@ -51,5 +54,6 @@ $language = array(
     'username_updated' => 'Username aggiornato con successo',
     'server_info_updated' => 'Info del server aggiornate con successo',
 	'account_validated' => 'Account validato con successo',
-    'discord_id_set' => 'Discord ID set successfully'
+    'discord_id_set' => 'Discord ID set successfully',
+    'discord_bot_url_updated' => 'Discord bot URL updated successfully'
 );

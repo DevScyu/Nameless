@@ -34,13 +34,16 @@ $language = array(
     'you_must_register_to_report' => 'Debe registrarse para poder reportar a un usuario.',
     'you_have_been_banned_from_website' => 'Ha sido baneado del foro.',
     'you_have_open_report_already' => 'Ya tiene un informe abierto con respecto a este usuario.',
+    'cannot_report_yourself' => 'You cannot report yourself.',
     'unable_to_create_report' => 'No se ha podido crear el reporte.',
     'unable_to_update_username' => 'No se ha podido actualizar el nombre de usuario.',
     'unable_to_update_server_info' => 'No se ha podido actualizar la información del servidor.',
     'invalid_server_id' => 'La ID del servidor no es válida.',
     'invalid_code' => 'El código proporcionado es inválido.',
+    'user_already_active' => 'Your account has already been activated.',
     'discord_integration_disabled' => 'Discord integration is disabled.',
     'unable_to_set_discord_id' => 'Unable to set Discord ID.',
+    'unable_to_set_discord_bot_url' => 'Unable to set Discord bot URL',
 
     // Success messages
     'finish_registration_link' => 'Haga clic en el siguiente enlace para confirmar su registro:',
@@ -51,5 +54,6 @@ $language = array(
     'username_updated' => 'Nombre de usuario actualizado correctamente.',
     'server_info_updated' => 'Información del servidor actualizada correctamnete.',
     'account_validated' => 'Cuenta verificada correctamente.',
-    'discord_id_set' => 'Discord ID set successfully'
+    'discord_id_set' => 'Discord ID set successfully',
+    'discord_bot_url_updated' => 'Discord bot URL updated successfully'
 );

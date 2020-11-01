@@ -41,6 +41,17 @@ try {
 
 // Discord Integration
 try {
+    DB::getInstance()->query("CREATE TABLE `nl2_discord_verifications` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `token` varchar(13) NOT NULL,
+        `user_id` int(11) NOT NULL,
+        `discord_user_id` INT(18) NOT NULL,
+        PRIMARY KEY (`id`)
+        ) ENGINE=$db_engine DEFAULT CHARSET=$db_charset");
+} catch (Exception $e) {
+    echo $e->getMessage() . '<br />';
+}
+try {
     $queries->create('settings', array(
         'name' => 'discord_integration',
         'value' => 0,
@@ -61,7 +72,7 @@ try {
     echo $e->getMessage() . '<br />';
 }
 try {
-    $queries->alterTable('groups', '`discord_role_id`', "bigint(18) NULL DEFAULT NULL");
+    $queries->alterTable('group_sync', '`discord_role_id`', "bigint(18) NULL DEFAULT NULL");
 } catch (Exception $e) {
     echo $e->getMessage() . '<br />';
 }
@@ -85,7 +96,7 @@ try {
 
 // Reset panel_sidebar cache so that the orders do not interfere on upgrade
 try {
-    unlink($cache->getCachePath() . 'f068dd5fa2de0ad75c7380f550e12fbb6d0ac70e.cache');
+    unlink(ROOT_PATH . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . sha1('panel_sidebar') . '.cache');
 } catch (Exception $e) {
     echo $e->getMessage() . '<br />';
 }
@@ -125,8 +136,11 @@ try {
 
 // Multiple webhooks
 try {
-    $queries->createTable("hooks", " `id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(128) NOT NULL, `action` int(11) NOT NULL, `url` varchar(2048) NOT NULL, `events` varchar(2048) NOT NULL, PRIMARY KEY (`id`)", "");
-    $queries->alterTable('hooks', '`name`', "varchar(128) NULL DEFAULT NULL");
+    if (!empty($queries->tableExists('hooks'))) {
+        $queries->alterTable('hooks', '`name`', "varchar(128) NULL DEFAULT NULL");
+    } else {
+        $queries->createTable("hooks", " `id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(128) NOT NULL, `action` int(11) NOT NULL, `url` varchar(2048) NOT NULL, `events` varchar(2048) NOT NULL, PRIMARY KEY (`id`)", "");
+    }
 } catch (Exception $e) {
     echo $e->getMessage() . '<br />';
 }
@@ -162,6 +176,20 @@ try {
 }
 try {
     $queries->addPermissionGroup(2, 'admincp.security.emails');
+} catch (Exception $e) {
+    echo $e->getMessage() . '<br />';
+}
+
+// Widget Locations
+try {
+    $queries->alterTable('widgets', '`location`', "varchar(5) NOT NULL DEFAULT 'right'");
+} catch (Exception $e) {
+    echo $e->getMessage() . '<br />';
+}
+
+// Ingame group dropdown
+try {
+    $queries->alterTable('query_results', '`groups`', "varchar(256) NOT NULL DEFAULT '[]'");
 } catch (Exception $e) {
     echo $e->getMessage() . '<br />';
 }

@@ -34,6 +34,7 @@ $language = array(
     'unable_to_find_group' => '指定されたグループを見つけることができませんでした。',
     'unable_to_update_group' => 'ユーザーのグループを更新できませんでした。',
     'report_content_too_long' => 'レポートの内容は <strong>255文字</strong>　以内にする必要があります。',
+    'cannot_report_yourself' => 'You cannot report yourself.',
     'you_must_register_to_report' => 'レポートを送信するには、サイトにてアカウントを作成する必要があります。',
     'you_have_been_banned_from_website' => 'あなたはウェブサイトにてアカウントがロックされています。',
     'you_have_open_report_already' => '既に指定されたプレイヤーのレポートが存在します。',
@@ -42,8 +43,10 @@ $language = array(
     'unable_to_update_server_info' => 'サーバー情報を更新できませんでした。',
     'invalid_server_id' => '無効なサーバーID',
     'invalid_code' => '指定されたコードは無効です。',
-    'discord_integration_disabled' => 'Discord integration is disabled.',
-    'unable_to_set_discord_id' => 'Unable to set Discord ID.',
+    'user_already_active' => 'あなたのアカウントはすでに有効化されています。',
+    'discord_integration_disabled' => 'Discordの連携は無効になっています。',
+    'unable_to_set_discord_id' => 'Discord IDを設定できません。',
+    'unable_to_set_discord_bot_url' => 'DiscordボットのURLが設定できません。',
 
     // Success messages
     'finish_registration_link' => '登録を完了するには次のリンクをクリックしてください:',
@@ -51,8 +54,9 @@ $language = array(
     'group_updated' => 'グループを正常に更新しました。',
     'report_created' => 'レポートが正常に送信されました。',
     'new_private_message_from' => '{x} から新しいプライベートメッセージが届いています。', // Don't replace {x}
-    'username_updated' => 'ユーザー名が正常に更新されました。',
-    'server_info_updated' => 'サーバー情報が正常に更新されました。',
+    'username_updated' => 'ユーザー名が更新されました。',
+    'server_info_updated' => 'サーバー情報が更新されました。',
     'account_validated' => 'アカウントの検証が完了しました。',
-    'discord_id_set' => 'Discord ID set successfully'
+    'discord_id_set' => 'Discord IDの設定に成功しました。',
+    'discord_bot_url_updated' => 'Discord botのURLが更新されました。'
 );

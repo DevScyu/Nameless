@@ -52,12 +52,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$error = $language['email_invalid'];
 			}
 		}
-	
+
 	} else {
 		$user = new User();
 		$password = password_hash(Input::get('password'), PASSWORD_BCRYPT, array('cost' => 13));
 
 		try {
+
+			$queries = new Queries();
+
+			$language = $queries->getWhere('languages', array('is_default', '=', 1));
 
 			$ip = $user->getIP();
 			$user->create(array(
@@ -73,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				'active' => 1,
 				'last_online' => date('U'),
 				'theme_id' => 1,
-				'language_id' => 1,
+				'language_id' => $language[0]->id,
 			));
 
 			$login = $user->login(Input::get('email'), Input::get('password'), true);
@@ -83,10 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				Redirect::to('?step=conversion');
 				die();
 			}
-			
+
 			$error = $language['unable_to_login'];
-			
-			$queries = new Queries();
+
 			$queries->delete('users', array('id', '=', 1));
 
 		} catch(Exception $e) {
@@ -115,8 +118,8 @@ if (isset($error)) {
 				<div class="sixteen wide mobile twelve wide tablet ten wide computer column">
 					<div class="ui form">
 						<?php
-							create_field('text', $language['username'], 'username', 'inputUsername');
-							create_field('email', $language['email_address'], 'email', 'inputEmail');
+							create_field('text', $language['username'], 'username', 'inputUsername', getenv('NAMELESS_ADMIN_USERNAME') ?: '');
+							create_field('email', $language['email_address'], 'email', 'inputEmail', getenv('NAMELESS_ADMIN_EMAIL') ?: '');
 							create_field('password', $language['password'], 'password', 'inputPassword');
 							create_field('password', $language['confirm_password'], 'password_again', 'inputPasswordAgain');
 						?>

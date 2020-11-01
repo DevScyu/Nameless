@@ -81,6 +81,7 @@ $language = array(
     'discord_widget_theme' => 'Tema do Widget do Discord',
     'discord_id_length' => 'Please ensure your Discord ID is 18 characters long.',
     'discord_id_numeric' => 'Please ensure your Discord ID is numeric (Numbers only).',
+    'discord_invite_info' => 'To invite the Nameless Link bot to your Discord server, click <a target="_blank" href="https://discord.com/api/oauth2/authorize?client_id=734609142081388705&permissions=268435456&scope=bot">here</a>.',
     'dark' => 'Escuro',
     'light' => 'Claro',
     'google_plus_url' => 'URL do Google Plus',
@@ -338,6 +339,7 @@ $language = array(
     'panel_templates' => 'Painel de Templates',
     'view_all_panel_templates' => 'View all panel templates',
     'template_outdated' => 'Você está utilizando um template para a versão {x} do Nameless, porém sua versão do Nameless é {y}', // Don't replace "{x}" or "{y}"
+    'template_not_supported' => 'As of NamelessMC 2.0.0-pr8 the Default template is not supported. For the best experience, please use a supported template.',
     'active' => 'Ativo',
     'deactivate' => 'Desativar',
     'activate' => 'Ativar',
@@ -498,7 +500,10 @@ $language = array(
     'widget_updated' => 'Widget atualizado.',
     'editing_widget_x' => 'Editando o widget {x}', // Don't replace {x}
     'module_x' => 'Módulo: {x}', // Don't replace {x}
-    'widget_order' => 'Ordenação dos Widgets',  
+    'widget_order' => 'Ordenação dos Widgets',
+    'widget_location' => 'Widget Location',
+    'left' => 'Left',
+    'right' => 'Right',
 
     // Online users widget
     'include_staff_in_user_widget' => 'Incluir membros da equipe no widget do usuário?',
@@ -578,7 +583,10 @@ $language = array(
     'group_sync_rules_updated_successfully' => 'As regras de sincronização de grupo foram atualizadas com sucesso.',
     'group_sync_rule_deleted_successfully' => 'A regra de sincronização do grupo foi excluída com sucesso.',
     'existing_rules' => 'Regras Existentes',
-    'new_rule' => 'Nova Regra', 
+    'new_rule' => 'Nova Regra',
+    'api_endpoints' => 'API Endpoints',
+    'api_endpoints_info' => 'API Endpoints allow Modules to create ways for external applications (such as Minecraft and Discord) to interact with your NamelessMC website.',
+    'route' => 'Route',
 
     // File uploads
     'drag_files_here' => 'Arraste arquivos aqui para fazer o upload.',

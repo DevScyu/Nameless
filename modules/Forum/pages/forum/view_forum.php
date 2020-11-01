@@ -99,7 +99,8 @@ if($forum_query->redirect_forum == 1){
 
 	$template->onPageLoad();
 
-	$smarty->assign('WIDGETS', $widgets->getWidgets());
+	$smarty->assign('WIDGETS_LEFT', $widgets->getWidgets('left'));
+	$smarty->assign('WIDGETS_RIGHT', $widgets->getWidgets('right'));
 
 	require(ROOT_PATH . '/core/templates/navbar.php');
 	require(ROOT_PATH . '/core/templates/footer.php');
@@ -187,7 +188,7 @@ if($forum_query->redirect_forum == 1){
 	$smarty->assign('FORUM_INDEX_LINK', URL::build('/forum'));
 
 	// Any subforums?
-	$subforums = $queries->getWhere('forums', array('parent', '=', $fid));
+	$subforums = $queries->orderWhere('forums', 'parent = ' . $forum_query->id, 'forum_order', 'ASC');
 
 	$subforum_array = array();
 
@@ -427,8 +428,9 @@ if($forum_query->redirect_forum == 1){
 
 	$template->onPageLoad();
 
-	$smarty->assign('WIDGETS', $widgets->getWidgets());
-
+	$smarty->assign('WIDGETS_LEFT', $widgets->getWidgets('left'));
+	$smarty->assign('WIDGETS_RIGHT', $widgets->getWidgets('right'));
+	
 	require(ROOT_PATH . '/core/templates/navbar.php');
 	require(ROOT_PATH . '/core/templates/footer.php');
 

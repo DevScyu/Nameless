@@ -80,6 +80,7 @@ $language = array(
 	'discord_widget_theme' => 'Discord Widget Theme',
 	'discord_id_length' => 'Please ensure your Discord ID is 18 characters long.',
 	'discord_id_numeric' => 'Please ensure your Discord ID is numeric (Numbers only).',
+	'discord_invite_info' => 'To invite the Nameless Link bot to your Discord server, click <a target="_blank" href="https://discord.com/api/oauth2/authorize?client_id=734609142081388705&permissions=268435456&scope=bot">here</a>.',
 	'dark' => 'Dark',
 	'light' => 'Light',
 	'google_plus_url' => 'Google Plus URL',
@@ -337,6 +338,7 @@ $language = array(
 	'panel_templates' => 'Panel Templates',
 	'view_all_panel_templates' => 'View all panel templates',
 	'template_outdated' => 'Vi har upptäckt att din mall är för Nameless version {x}, men du kör Nameless version {y}', // Don't replace "{x}" or "{y}"
+	'template_not_supported' => 'As of NamelessMC 2.0.0-pr8 the Default template is not supported. For the best experience, please use a supported template.',
 	'active' => 'Aktiv',
 	'deactivate' => 'Avaktivera',
 	'activate' => 'Activate',
@@ -500,6 +502,9 @@ $language = array(
 	'editing_widget_x' => 'Redigerar widget {x}', // Don't replace {x}
 	'module_x' => 'Module: {x}', // Don't replace {x}
 	'widget_order' => 'Widget Order',
+	'widget_location' => 'Widget Location',
+	'left' => 'Left',
+	'right' => 'Right',
 
     // Online users widget
     'include_staff_in_user_widget' => 'Include staff members in user widget?',
@@ -567,7 +572,7 @@ $language = array(
     'enable_username_sync_info' => 'If enabled, website usernames will be updated to match ingame usernames.',
 	'api_settings_updated_successfully' => 'API settings updated successfully.',
 	'group_sync' => 'Group Sync',
-	'group_sync_info' => 'You can configure the API to automatically update a user\'s website group when their ingame group is changed. Simply enter the ingame group name and the website group it should be synchronised with below.',
+	'group_sync_info' => 'You can configure the API to automatically update a user\'s website group when their integration group is changed. Simply enter the integration group name/ID and the website group it should be synchronised with below.',
 	'ingame_group' => 'Ingame Group Name',
 	'website_group' => 'Website Group',
 	'set_as_primary_group' => 'Set as primary group?',
@@ -580,6 +585,9 @@ $language = array(
 	'group_sync_rule_deleted_successfully' => 'The group sync rule has been deleted successfully.',
 	'existing_rules' => 'Existing Rules',
 	'new_rule' => 'New Rule',
+	'api_endpoints' => 'API Endpoints',
+	'api_endpoints_info' => 'API Endpoints allow Modules to create ways for external applications (such as Minecraft and Discord) to interact with your NamelessMC website.',
+	'route' => 'Route',
 
 	// File uploads
 	'drag_files_here' => 'Dra filer här för att ladda upp.',

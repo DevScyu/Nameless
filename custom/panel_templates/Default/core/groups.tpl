@@ -75,17 +75,21 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
+                                            <th>{$ORDER}</th>
                                             <th>{$GROUP_ID}</th>
                                             <th>{$NAME}</th>
                                             <th>{$USERS}</th>
+                                            <th>{$STAFF}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {foreach from=$GROUP_LIST item=group}
                                             <tr>
+                                                <td>{$group.order}</td>
                                                 <td>{$group.id}</td>
                                                 <td><a href="{$group.edit_link}">{$group.name}</a></td>
                                                 <td>{$group.users}</td>
+                                                <td>{if $group.staff}<i class="fas fa-check-circle text-success"></i>{else}<i class="fas fa-times-circle text-danger"></i>{/if}</td>
                                             </tr>
                                         {/foreach}
                                     </tbody>

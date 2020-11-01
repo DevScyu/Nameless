@@ -9,7 +9,24 @@
  *  Util class
  */
 class Util {
-	
+	// Converting Cyrillic to Latin letters (https://en.wikipedia.org/wiki/ISO_9)
+	public static function cyrillicToLatin($string)
+	{
+		$cyrillic = [
+            'а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п',
+            'р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я',
+            'А','Б','В','Г','Д','Е','Ё','Ж','З','И','Й','К','Л','М','Н','О','П',
+            'Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ъ','Ы','Ь','Э','Ю','Я'
+		];
+        $latin = [
+            'a','b','v','g','d','e','io','zh','z','i','y','k','l','m','n','o','p',
+            'r','s','t','u','f','h','ts','ch','sh','sht','a','i','y','e','yu','ya',
+            'A','B','V','G','D','E','Io','Zh','Z','I','Y','K','L','M','N','O','P',
+            'R','S','T','U','F','H','Ts','Ch','Sh','Sht','A','I','Y','e','Yu','Ya'
+        ];
+        return str_replace($cyrillic, $latin, $string);
+	}
+
 	// Escape a string
 	// Params:	$string (string)	- string to be escaped (required)
     public static function escape($string){
@@ -131,59 +148,6 @@ class Util {
 	   ');
 
 	   return preg_replace_callback($pattern, $callback, $text);
-	}
-	
-	// Parse text with Geshi
-	public static function parseGeshi($content = null){
-		if($content) {
-            require_once(ROOT_PATH . '/core/includes/geshi/geshi.php');
-
-            $dom = new DOMDocument;
-
-            $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-
-            $codeTags = $dom->getElementsByTagName('code');
-            $newCodeTags = array();
-            $ids = array();
-
-            $i = $codeTags->length - 1;
-
-            while ($i > -1) {
-                $code = $codeTags->item($i);
-                if ($code->hasAttributes()) {
-                    foreach ($code->attributes as $attribute) {
-                        if ($attribute->name == 'class') {
-                            $class = $attribute->value;
-
-                            if (substr($class, 0, 9) == 'language-') {
-                                // Parse with GeSHi
-                                $language = substr($class, 9);
-
-                                $geshi = new GeSHi($code->nodeValue, $language);
-                                $string = $geshi->parse_code();
-
-                                $newCodeTags[] = $string;
-
-                                $repl = $dom->createElement('span');
-
-                                $id = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 20);
-                                $ids[] = '<span id="' . $id . '"></span>';
-
-                                $repl->setAttribute('id', $id);
-
-                                $code->parentNode->replaceChild($repl, $code);
-                            }
-                        }
-                    }
-                }
-                $i--;
-            }
-
-            $content = $dom->saveHTML();
-
-            return str_replace($ids, $newCodeTags, $content);
-		}
-		return false;
 	}
 	
 	// Get a Minecraft avatar from a UUID
@@ -479,7 +443,7 @@ class Util {
 	    $ch = curl_init();
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	    curl_setopt($ch, CURLOPT_URL, 'https://namelessmc.com/nl_core/nl2/stats.php?uid=' . $uid . '&version=' . $current_version);
+	    curl_setopt($ch, CURLOPT_URL, 'https://namelessmc.com/nl_core/nl2/stats.php?uid=' . $uid . '&version=' . $current_version . '&php_version=' . urlencode(phpversion()));
 
 	    $update_check = curl_exec($ch);
 
@@ -542,33 +506,6 @@ class Util {
 		    return $news;
 	    }
 	}
-	
-	public static function discordBotRequest($url) {
-
-		$bot_url_attempt = self::curlGetContents(BOT_URL . $url);
-
-		switch ($bot_url_attempt) {
-			case 'success':
-				return 'success';
-			case 'failure-cannot-interact':
-				return 'failure-cannot-interact';
-			case 'failure-invalid-api-url':
-				return 'failure-invalid-api-url';
-			default: {
-				$backup_bot_url_attempt = self::curlGetContents(BOT_URL_BACKUP . $url);
-				switch ($backup_bot_url_attempt) {
-					case 'success':
-						return 'success';
-					case 'failure-cannot-interact':
-						return 'failure-cannot-interact';
-					case 'failure-invalid-api-url':
-						return 'failure-invalid-api-url';
-					default:
-						return false;
-				}
-			}
-		}
-	}
 
 	public static function curlGetContents($full_url) {
 		$ch = curl_init();
@@ -593,5 +530,11 @@ class Util {
 				return '<a href="'.$m[1].'" target="_blank">'.$m[2].'</a>';
 		}, $data);
 		return $data;
+	}
+
+	public static function getSetting(DB $db, $setting, $fallback = null) {
+		$value = $db->get('settings', array('name', '=', $setting));
+		if ($value->count()) return $value->first()->value;
+		else return $fallback;
 	}
 }

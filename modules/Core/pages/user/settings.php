@@ -526,17 +526,23 @@ if(isset($_GET['do'])){
 						die();
 					}
 					else {
-						$api_key = $queries->getWhere('settings', array('name', '=', 'mc_api_key'));
-						$api_key = $api_key[0]->value;
-						$api_url = rtrim(Util::getSelfURL(), '/') . rtrim(URL::build('/api/v2/' . Output::getClean($api_key), '', 'non-friendly'), '/');
-						$discord_role_id = $queries->getWhere('groups', array('id', '=', $user->data()->group_id));
-						$discord_role_id = $discord_role_id[0]->discord_role_id;
-						$guild_id = $queries->getWhere('settings', array('name', '=', 'discord'));
-						$guild_id = $guild_id[0]->value;
-						$url = '/verifyId?id=' . $discord_id . '&username=' . Output::getClean($user->data()->username . '&guild_id=' . $guild_id);
+						$api_url = rtrim(Util::getSelfURL(), '/') . rtrim(URL::build('/api/v2/' . Output::getClean(Util::getSetting(DB::getInstance(), 'mc_api_key')), '', 'non-friendly'), '/');
+
+						$discord_role_id = Discord::getDiscordRoleId(DB::getInstance(), $user->data()->group_id);
+
+						$guild_id = Util::getSetting(DB::getInstance(), 'discord');
+
+						$token = uniqid();
+						$queries->create('discord_verifications', [
+							'token' => $token,
+							'user_id' => $user->data()->id,
+							'discord_user_id' => $discord_id
+						]);
+
+						$url = '/verifyId?id=' . $discord_id . '&token=' . $token . '&guild_id=' . $guild_id;
 						$discord_integration = $queries->getWhere('settings', array('name', '=', 'discord_integration'));
 						if ($discord_role_id != null && $discord_integration[0]->value) $url .= '&role=' . $discord_role_id;
-						$result = Util::discordBotRequest($url . '&site=' . $api_url);
+						$result = Discord::discordBotRequest($url . '&site=' . $api_url);
 						if ($result != 'success') {
 							if ($result === false) {
 								// This happens when the url is invalid OR the bot is unreachable (down, firewall, etc) OR they have `allow_url_fopen` disabled in php.ini
@@ -563,7 +569,7 @@ if(isset($_GET['do'])){
 							$user->update(array(
 								'discord_id' => 010
 							));
-							Session::flash('settings_success', $language->get('user', 'discord_id_confirm'));
+							Session::flash('settings_success', str_replace(array('{guild_id}', '{token}'), array(Util::getSetting(DB::getInstance(), 'discord'), $token), $language->get('user', 'discord_id_confirm')));
 							Redirect::to(URL::build('/user/settings'));
 							die();
 						}
@@ -762,9 +768,8 @@ if(isset($_GET['do'])){
         ));
 	}
 	
-	$discord_linked = $user->data()->discord_id == null || $user->data()->discord_id == 010 ? 0 : 1;
-	$discord_integration = $queries->getWhere('settings', array('name', '=', 'discord_integration'));
-	$discord_integration = $discord_integration[0]->value;
+	$discord_linked = $user->data()->discord_id == null || $user->data()->discord_id == 010 ? false : true;
+	$discord_integration = Util::getSetting(DB::getInstance(), 'discord_integration');
 	
 	// Language values
 	$smarty->assign(array(

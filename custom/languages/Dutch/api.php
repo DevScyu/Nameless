@@ -15,8 +15,8 @@ $language = array(
     'invalid_api_key' => 'Ongeldige API key',
     'invalid_language_file' => 'Ongeldig taalbestand',
     'invalid_api_method' => 'Ongeldige API methode',
-    'no_unique_site_id' => 'Geen unique site-ID beschikbaar',
-    'unable_to_check_for_updates' => 'Kon niet checken voor updates',
+    'no_unique_site_id' => 'Geen uniek site-ID beschikbaar',
+    'unable_to_check_for_updates' => 'Kon niet controleren voor updates',
     'invalid_post_contents' => 'Ongeldige POST inhoud',
     'invalid_get_contents' => 'Ongeldige GET inhoud',
     'invalid_email_address' => 'Ongeldig email address',
@@ -32,6 +32,7 @@ $language = array(
     'unable_to_update_group' => 'Kon gebruikersgroep niet bijwerken',
     'report_content_too_long' => 'De inhoud van het rapport mag maximaal 255 karakters of minder bevatten',
     'you_must_register_to_report' => 'Je moet registreren via onze website om een rapport te kunnen maken',
+    'cannot_report_yourself' => 'You cannot report yourself.',
     'you_have_been_banned_from_website' => 'Je bent verbannen van de website',
     'you_have_open_report_already' => 'Je hebt al een rapport open staan over deze speler',
     'unable_to_create_report' => 'Kon rapport niet maken',
@@ -39,9 +40,11 @@ $language = array(
     'unable_to_update_server_info' => 'Kon server informatie niet bijwerken',
     'invalid_server_id' => 'Ongeldige server ID',
     'invalid_code' => 'Ongeldige code voorzien',
+    'user_already_active' => 'Your account has already been activated.',
     'discord_integration_disabled' => 'Discord integration is disabled.',
-    'unable_to_set_discord_id' => 'Unable to set Discord ID.',
-    
+    'unable_to_set_discord_id' => 'Kan geen Discord ID instellen.',
+    'unable_to_set_discord_bot_url' => 'Unable to set Discord bot URL',
+
     // Success messages
     'finish_registration_link' => 'Klik alstublieft op de volgende link om de registratie te voltooien:',
     'finish_registration_email' => 'Bekijkt u alstublieft uw email om de registratie te voltooien.',
@@ -51,5 +54,6 @@ $language = array(
     'username_updated' => 'Gebruikersnaam succesvol bijgewerkt',
     'server_info_updated' => 'Server informatie succesvol bijgwerkt',
     'account_validated' => 'Account succesvol gevalideerd',
-    'discord_id_set' => 'Discord ID set successfully'
+    'discord_id_set' => 'Discord ID met succes ingesteld',
+    'discord_bot_url_updated' => 'Discord bot URL updated successfully'
 );

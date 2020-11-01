@@ -36,8 +36,15 @@
 
 <div class="ui stackable grid" id="profile">
   <div class="ui centered row">
-    <div class="ui {if count($WIDGETS)}ten wide tablet twelve wide computer{else}sixteen wide{/if} column">
-      {if isset($SUCCESS)}
+      {if count($WIDGETS_LEFT)}
+          <div class="ui six wide tablet four wide computer column">
+              {foreach from=$WIDGETS_LEFT item=widget}
+                  {$widget}
+              {/foreach}
+          </div>
+      {/if}
+      <div class="ui {if count($WIDGETS_LEFT) && count($WIDGETS_RIGHT) }four wide tablet eight wide computer{elseif count($WIDGETS_LEFT) || count($WIDGETS_RIGHT)}ten wide tablet twelve wide computer{else}sixteen wide{/if} column">      
+        {if isset($SUCCESS)}
         <div class="ui success icon message">
           <i class="check icon"></i>
           <div class="content">
@@ -190,7 +197,7 @@
               {foreach from=$ABOUT_FIELDS key=key item=field}
                 {if is_numeric($key)}
                   <div class="item">
-                    <i class="middle aligned dot circle icon"></i>
+                  <i class="middle aligned {if $field.type eq 'date'}calendar alternate{else}dot circle{/if} icon"></i>
                     <div class="middle aligned content">
                       <div class="header">{$field.title}</div>
                       <div class="description">{$field.value}</div>
@@ -220,12 +227,12 @@
         </div>
       {/if}
     </div>
-    {if count($WIDGETS)}
-      <div class="ui six wide tablet four wide computer column">
-        {foreach from=$WIDGETS item=widget}
-          {$widget}
-        {/foreach}
-      </div>
+    {if count($WIDGETS_RIGHT)}
+        <div class="ui six wide tablet four wide computer column">
+            {foreach from=$WIDGETS_RIGHT item=widget}
+                {$widget}
+            {/foreach}
+        </div>
     {/if}
   </div>
 </div>

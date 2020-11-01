@@ -79,6 +79,7 @@ $language = array(
 	'discord_widget_theme' => 'Tema Widget Discord',
 	'discord_id_length' => 'Please ensure your Discord ID is 18 characters long.',
 	'discord_id_numeric' => 'Please ensure your Discord ID is numeric (Numbers only).',
+	'discord_invite_info' => 'To invite the Nameless Link bot to your Discord server, click <a target="_blank" href="https://discord.com/api/oauth2/authorize?client_id=734609142081388705&permissions=268435456&scope=bot">here</a>.',
 	'dark' => 'Scuro',
 	'light' => 'Chiaro',
 	'google_plus_url' => 'Google Plus URL',
@@ -336,6 +337,7 @@ $language = array(
 	'panel_templates' => 'Modelli Pannello',
 	'view_all_panel_templates' => 'View all panel templates',
 	'template_outdated' => 'Abbiamo rilevato che il tuo modello è destinato alla versione {x} di Nameless, ma tu stai usando la{y}', // Don't replace "{x}" or "{y}"
+	'template_not_supported' => 'As of NamelessMC 2.0.0-pr8 the Default template is not supported. For the best experience, please use a supported template.',
 	'active' => 'Attivato',
 	'deactivate' => 'Disattivato',
 	'activate' => 'Attiva',
@@ -500,6 +502,9 @@ $language = array(
 	'editing_widget_x' => 'Modifica del widget {x}', // Don't replace {x}
 	'module_x' => 'Modulo: {x}', // Don't replace {x}
 	'widget_order' => 'Ordine dei widget',
+	'widget_location' => 'Widget Location',
+	'left' => 'Left',
+	'right' => 'Right',
 
     // Online users widget
     'include_staff_in_user_widget' => 'Includere i membri dello staff nel widget utenti?',
@@ -580,6 +585,9 @@ $language = array(
 	'group_sync_rule_deleted_successfully' => 'La regola di sincronizzazione del gruppo è stata eliminata con successo.',
 	'existing_rules' => 'Regole Esistenti',
 	'new_rule' => 'Nuova Regola',
+	'api_endpoints' => 'API Endpoints',
+	'api_endpoints_info' => 'API Endpoints allow Modules to create ways for external applications (such as Minecraft and Discord) to interact with your NamelessMC website.',
+	'route' => 'Route',
 
 	// File uploads
 	'drag_files_here' => 'Trascina qui i file da caricare.',

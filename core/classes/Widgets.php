@@ -83,17 +83,25 @@ class Widgets {
     /*
      *  Get code for all enabled widgets on the current page
      */
-    public function getWidgets(){
+    public function getWidgets($location = 'right'){
         $ret = array();
 
         $widgets = $this->getAll();
 
-        foreach($widgets as $item)
-            if(array_key_exists($item->getName(), $this->_enabled) && is_array($item->getPages()) && in_array((defined('PAGE') ? PAGE : 'index'), $item->getPages())){
-            	$item->initialise();
-	            $ret[] = $item->display();
+        foreach($widgets as $item) {
+            if (
+                array_key_exists($item->getName(), $this->_enabled)
+                && $item->getLocation() == $location
+                && is_array($item->getPages())
+                && (
+                    in_array((defined('CUSTOM_PAGE') ? CUSTOM_PAGE : 'index'), $item->getPages()) 
+                    || 
+                    in_array((defined('PAGE') ? PAGE : 'index'), $item->getPages()))
+            ) {
+                $item->initialise();
+                $ret[] = $item->display();
             }
-
+        }
         return $ret;
     }
 

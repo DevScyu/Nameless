@@ -13,7 +13,7 @@ class Core_Module extends Module {
 	private $_language;
 	private static $_dashboard_graph = array(), $_notices = array(), $_user_actions = array();
 
-	public function __construct($language, $pages, $user, $queries, $navigation, $cache){
+	public function __construct($language, $pages, $user, $queries, $navigation, $cache, $endpoints){
 		$this->_language = $language;
 
 		$name = 'Core';
@@ -35,6 +35,7 @@ class Core_Module extends Module {
 		$pages->add('Core', '/profile', 'pages/profile.php', 'profile', true);
 		$pages->add('Core', '/register', 'pages/register.php');
 		$pages->add('Core', '/validate', 'pages/validate.php');
+		$pages->add('Core', '/queries/admin_users', 'queries/admin_users.php');
 		$pages->add('Core', '/queries/alerts', 'queries/alerts.php');
 		$pages->add('Core', '/queries/pms', 'queries/pms.php');
 		$pages->add('Core', '/queries/servers', 'queries/servers.php');
@@ -135,7 +136,7 @@ class Core_Module extends Module {
 					if($custom_page->redirect == 1)
 						$redirect = Output::getClean($custom_page->link);
 
-					$pages->addCustom(Output::getClean($custom_page->url), Output::getClean($custom_page->title), false);
+					$pages->addCustom(Output::getClean($custom_page->url), Output::getClean($custom_page->title), !$custom_page->basic);
 
 					foreach($user_groups as $user_group){
 						$custom_page_permissions = $queries->getWhere('custom_pages_permissions', array('group_id', '=', $user_group));
@@ -183,7 +184,7 @@ class Core_Module extends Module {
 						if($custom_page->redirect == 1)
 							$redirect = Output::getClean($custom_page->link);
 
-						$pages->addCustom(Output::getClean($custom_page->url), Output::getClean($custom_page->title), false);
+						$pages->addCustom(Output::getClean($custom_page->url), Output::getClean($custom_page->title), !$custom_page->basic);
 
 						foreach($custom_page_permissions as $permission){
 							if($permission->page_id == $custom_page->id){
@@ -241,7 +242,7 @@ class Core_Module extends Module {
 			$hook_array = $cache->retrieve('hooks');
 		} else {
 			$hook_array = array();
-			if ($queries->tableExists('hooks')) {
+			if (!empty($queries->tableExists('hooks'))) {
 				$hooks = $queries->getWhere('hooks', array('id', '<>', 0));
 				if (count($hooks)) {
 					foreach ($hooks as $hook) {
@@ -266,6 +267,15 @@ class Core_Module extends Module {
 			}
 		}
 		HookHandler::registerHooks($hook_array);
+
+		// Autoload API Endpoints
+		$classes = scandir(join(DIRECTORY_SEPARATOR, array(ROOT_PATH, 'modules', 'Core', 'includes', 'endpoints')));
+		foreach ($classes as $endpoint) {
+			if ($endpoint[0] == '.') continue; 
+			require_once(join(DIRECTORY_SEPARATOR, array(ROOT_PATH, 'modules', 'Core', 'includes', 'endpoints', $endpoint)));
+			$endpoint = str_replace('.php', '', $endpoint);
+			$endpoints->add(new $endpoint());
+		}
 	}
 
 	public function onInstall(){
@@ -333,6 +343,7 @@ class Core_Module extends Module {
 			'admincp.users' => $language->get('admin', 'user_management'),
 			'modcp.ip_lookup' => $language->get('admin', 'user_management') . ' &raquo; ' . $language->get('moderator', 'ip_lookup'),
 			'modcp.punishments' => $language->get('admin', 'user_management') . ' &raquo; ' . $language->get('moderator', 'punishments'),
+			'modcp.punishments.reset_avatar' => $language->get('admin', 'user_management') . ' &raquo; ' . $language->get('moderator', 'punishments') . ' &raquo; ' . $language->get('moderator', 'reset_avatar'),
 			'modcp.punishments.warn' => $language->get('admin', 'user_management') . ' &raquo; ' . $language->get('moderator', 'punishments') . ' &raquo; ' . $language->get('moderator', 'warn_user'),
 			'modcp.punishments.ban' => $language->get('admin', 'user_management') . ' &raquo; ' . $language->get('moderator', 'punishments') . ' &raquo; ' . $language->get('moderator', 'ban_user'),
 			'modcp.punishments.banip' => $language->get('admin', 'user_management') . ' &raquo; ' . $language->get('moderator', 'punishments') . ' &raquo; ' . $language->get('moderator', 'ban_ip'),
@@ -409,6 +420,11 @@ class Core_Module extends Module {
 		require_once(ROOT_PATH . '/modules/Core/widgets/OnlineUsers.php');
 		$module_pages = $widgets->getPages('Online Users');
 		$widgets->add(new OnlineUsersWidget($module_pages, $cache, $smarty, array('title' => $language->get('general', 'online_users'), 'no_online_users' => $language->get('general', 'no_online_users'), 'total_online_users' => $language->get('general', 'total_online_users'))));
+
+		// Online users
+		require_once(ROOT_PATH . '/modules/Core/widgets/ServerStatusWidget.php');
+		$module_pages = $widgets->getPages('Server Status');
+		$widgets->add(new ServerStatusWidget($module_pages, $smarty, $language, $cache));
 		
 		// Statistics
 		require_once(ROOT_PATH . '/modules/Core/widgets/StatsWidget.php');

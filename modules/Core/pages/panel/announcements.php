@@ -152,7 +152,6 @@ if (!isset($_GET['action'])) {
             $smarty->assign(array(
                 'ANNOUNCEMENT_TITLE' => $language->get('admin', 'creating_announcement'),
                 'GROUPS' => $template_array,
-                'BACK_LINK' => URL::build('/panel/core/announcements'),
             ));
 
             $template_file = 'core/announcements_form.tpl';
@@ -296,17 +295,17 @@ if (Session::exists('announcement_success'))
         'SUCCESS' => Session::flash('announcement_success'),
         'SUCCESS_TITLE' => $language->get('general', 'success')
     ));
-if (Session::exists('announcement_error'))
+if (isset($errors) && count($errors))
     $smarty->assign(array(
-        'ERRORS' => Session::flash('announcement_error'),
+        'ERRORS' => $errors,
         'ERRORS_TITLE' => $language->get('general', 'error')
     ));
 
 $smarty->assign(array(
+    'PAGE' => PANEL_PAGE,
     'PARENT_PAGE' => PARENT_PAGE,
     'DASHBOARD' => $language->get('admin', 'dashboard'),
     'CONFIGURATION' => $language->get('admin', 'configuration'),
-    'PAGE' => $language->get('admin', 'announcements'),
     'TOKEN' => Token::get(),
     'SUBMIT' => $language->get('general', 'submit'),
     'ARE_YOU_SURE' => $language->get('general', 'are_you_sure'),
@@ -314,10 +313,10 @@ $smarty->assign(array(
     'ICON_INFO' => $language->get('admin', 'announcement_icon_instructions'),
     'YES' => $language->get('general', 'yes'),
     'NO' => $language->get('general', 'no'),
-    'ERRORS' => $errors,
     'HEADER' => $language->get('admin', 'header'),
     'MESSAGE' => $language->get('admin', 'message'),
     'BACK' => $language->get('general', 'back'),
+    'BACK_LINK' => URL::build('/panel/core/announcements'),
     'PAGES' => $language->get('admin', 'pages'),
     'TEXT_COLOUR' => $language->get('admin', 'text_colour'),
     'BACKGROUND_COLOUR' => $language->get('admin', 'background_colour'),
